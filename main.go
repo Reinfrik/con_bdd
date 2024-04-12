@@ -1,33 +1,12 @@
 package main
 
 import (
-	"database/sql"
+	"con-ora/conexion"
 	"fmt"
-
-	_ "github.com/godror/godror"
 )
 
 func main() {
+	fmt.Println("Hola")
 
-	db, err := sql.Open("godror", "<SYSTEM>/<123456>@OracleServiceXE")
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	defer db.Close()
-
-	rows, err := db.Query("select sysdate from dual")
-	if err != nil {
-		fmt.Println("Error running query")
-		fmt.Println(err)
-		return
-	}
-	defer rows.Close()
-
-	var thedate string
-	for rows.Next() {
-
-		rows.Scan(&thedate)
-	}
-	fmt.Printf("The date is: %s\n", thedate)
+	conexion.Conexion()
 }
