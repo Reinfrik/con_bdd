@@ -8,7 +8,7 @@ import (
 	_ "github.com/godror/godror"
 )
 
-func Conexion() {
+func Conexiones() {
 	dsn := `user=SYSTEM
 	        password=123456
 			connectString=localhost:1521/XE`
@@ -23,8 +23,6 @@ func Conexion() {
 		panic(err)
 	}
 
-	fmt.Println(rows)
-
 	defer rows.Close()
 	var strVal string
 	for rows.Next() {
@@ -32,12 +30,14 @@ func Conexion() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println(strVal)
+		//fmt.Println(strVal)
 	}
 
 	err = rows.Err()
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	fmt.Println("Conexion a Oracle Exitosa")
 
 }
